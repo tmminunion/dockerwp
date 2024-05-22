@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: mysql:5.7
+    image: mysql:latest
     volumes:
       - db_data:/var/lib/mysql
     restart: always
@@ -17,11 +17,11 @@ services:
   wordpress:
     depends_on:
       - db
-    image: wordpress:php7.4-fpm
+    image: wordpress:php8.3-fpm
     volumes:
       - wordpress_data:/var/www/html
-      - ./themes:/var/www/html/wp-content/themes  # Mount local themes directory
-      - ./plugins:/var/www/html/wp-content/plugins  # Mount local plugins directory
+      - ./themes:/var/www/html/wp-content/themes # Mount local themes directory
+      - ./plugins:/var/www/html/wp-content/plugins # Mount local plugins directory
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
